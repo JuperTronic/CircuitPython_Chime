@@ -145,8 +145,8 @@ class Chime:
         loudness=0.5,
         debug=False,
     ):
-        """Create the oscillator waveform, note envelope, overtones, scale, and
-        instantiate the synthesizer.
+        """Create the chime oscillator waveform, note envelope, overtones,
+        scale, and instantiate the synthesizer.
 
         param: audio, ?: An instantiated audio object to receive the output
         audio stream, typically an I2S connection, analog DAC output pin, or
