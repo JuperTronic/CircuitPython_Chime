@@ -34,7 +34,7 @@ audio_output.play(mixer)
 mixer.voice[0].level = 1.0
 
 # Instantiate the chime synth with mostly default parameters
-chime = Chime(mixer.voice[0], scale=Scale.HavaNegila, scale_offset=5)
+chime = Chime(mixer.voice[0], scale=Scale.HarryDavidPear)
 
 # Play scale notes sequentially
 for index, note in enumerate(chime.scale):
