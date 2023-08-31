@@ -233,13 +233,27 @@ class Chime:
 
     @property
     def scale(self):
-        """Returns the chime scale list in SPN."""
+        """The chime scale list in SPN."""
         return self._scale
+
+    @scale.setter
+    def scale(self, new_scale=Scale.CNine):
+        self._scale = []
+        for index, note in enumerate(new_scale):
+            self._scale.append(
+                min(max(name_to_note(note) + self._scale_offset, 0), 127)
+            )
+        if self._debug:
+            print(f"scale={new_scale} self._scale={self._scale} list created")
 
     @property
     def loudness(self):
-        """Returns the current loudness value."""
+        """The current loudness value."""
         return self._loudness
+
+    @loudness.setter
+    def loudness(self, new_loudness=0.5):
+        self._loudness = new_loudness
 
     def strike(self, root_note=69, amplitude=0):
         """Strike the chime or bell. The midi root_note integer ranges from 0 to 128.
