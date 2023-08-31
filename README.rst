@@ -2,14 +2,12 @@ Introduction
 ============
 
 
-
-
 .. image:: https://img.shields.io/discord/327254708534116352.svg
     :target: https://adafru.it/discord
     :alt: Discord
 
 
-.. image:: https://github.com/CedarGroveStudios/CircuitPython_PunkConsole/workflows/Build%20CI/badge.svg
+.. image:: https://github.com/CedarGroveStudios/CircuitPython_Chime/workflows/Build%20CI/badge.svg
     :target: https://github.com/CedarGroveStudios/CircuitPython_PunkConsole/actions
     :alt: Build Status
 
@@ -18,9 +16,7 @@ Introduction
     :target: https://github.com/psf/black
     :alt: Code Style: Black
 
-A CircuitPython-based Atari Punk Console emulation helper class based on the
-"Stepped Tone Generator" circuit, "Engineer's Mini-Notebook: 555 Circuits",
-Forrest M. Mims III (1984).
+A CircuitPython class for generating wind chime and bell sounds using synthio.
 
 
 Dependencies
@@ -35,53 +31,45 @@ This is easily achieved by downloading
 or individual libraries can be installed using
 `circup <https://github.com/adafruit/circup>`_.
 
-Installing to a Connected CircuitPython Device with Circup
-==========================================================
-
-Make sure that you have ``circup`` installed in your Python environment.
-Install it with the following command if necessary:
-
-.. code-block:: shell
-
-    pip3 install circup
-
-With ``circup`` installed and your CircuitPython device connected use the
-following command to install:
-
-.. code-block:: shell
-
-    circup install cedargrove_punkconsole
-
-Or the following command to update an existing version:
-
-.. code-block:: shell
-
-    circup update
-
 Usage Example
 =============
 
 .. code-block:: python
 
+    import time
     import board
-    import analogio
-    import pwmio
-    from simpleio import map_range
-    from cedargrove_punkconsole import PunkConsole
+    import random
+    import audiobusio
+    import audiomixer
+    from cedargrove_chime import Chime, Scale, Voice, Material, Striker
 
-    # instantiate a PunkConsole output on pin A1 (PWM-capable)
-    punk_console = PunkConsole(board.A1, mute=False)
+    # Instantiate I2S output and mixer buffer for synthesizer
+    audio_output = audiobusio.I2SOut(
+        bit_clock=board.D12, word_select=board.D9, data=board.D6
+    )
+    mixer = audiomixer.Mixer(
+        sample_rate=11020, buffer_size=4096, voice_count=1, channel_count=1
+    )
+    audio_output.play(mixer)
+    mixer.voice[0].level = 1.0
 
-    # define the two potentiometer inputs
-    f_in = analogio.AnalogIn(board.A2)  # Oscillator Frequency
-    pw_in = analogio.AnalogIn(board.A3)  # One-Shot Pulse Width
+    # Instantiate the chime synth with mostly default parameters
+    chime = Chime(mixer.voice[0], scale=Scale.HavaNegila)
+
+    # Play scale notes sequentially
+    for index, note in enumerate(chime.scale):
+        chime.strike(note, 1)
+        time.sleep(0.4)
+    time.sleep(1)
 
     while True:
-        # read the inputs, map to practical audio ranges, send to PunkConsole instance
-        #   oscillator frequency range: 3Hz to 3kHz
-        #   one-shot pulse width range: 0.5ms to 5ms
-        punk_console.frequency = map_range(f_in.value, 0, 65535, 3, 3000)
-        punk_console.pulse_width_ms = map_range(pw_in.value, 0, 65535, 0.5, 5.0)
+        # Play randomly
+        for count in range(random.randrange(10)):
+            chime.strike(random.choice(chime.scale), 1)
+            time.sleep(random.randrange(1, 3) * 0.6)
+
+        time.sleep(random.randrange(1, 10) * 0.5)
+
 
 Documentation
 =============
