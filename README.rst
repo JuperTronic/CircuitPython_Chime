@@ -24,6 +24,7 @@ Dependencies
 This driver depends on:
 
 * `Adafruit CircuitPython <https://github.com/adafruit/circuitpython>`_
+* `CedarGrove CircuitPython_MIDI_Tools <https://github.com/CedarGroveStudios/CircuitPython_MIDI_Tools>`_
 
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
