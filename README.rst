@@ -18,6 +18,16 @@ Introduction
 
 A CircuitPython class for generating wind chime and bell sounds using synthio.
 
+The CedarGrove CircuitPython Chime class provides note overtones and envelopes developed from
+a combination of tubular chime algorithms and empirical models. Three chime voices are included
+in the class (``Voice.Tubular``, ``Voice.Bell``, and ``Voice.Perfect``) as well as selectable chime
+and striker materials. The ``Scales`` class contains a library of common wind chime and bell scales
+in a series of Scientific Pitch Notation (SPN) lists.
+
+The ``Chime`` class is instantiated after an MCU board-specific audio output object is defined. The
+audio output object can be an Analog DAC or PWM GPIO pin as well as an I2S DAC output (as in the
+simpletest example). Chime notes are then played by the ``Chime.strike(root_note, amplitude)`` function.
+
 
 Dependencies
 =============
@@ -76,13 +86,11 @@ Documentation
 =============
 API documentation for this library can be found in `Cedargrove_Chime_API <https://github.com/CedarGroveStudios/CircuitPython_Chime/blob/main/media/pseudo_rtd_cedargrove_chime.pdf>`_.
 
-
 .. image:: https://github.com/CedarGroveStudios/CircuitPython_Chime/blob/main/media/chime_api_page3.png
 
-The CedarGrove Chimes class...
 
-
-Planned updates:
+Planned Updates
+===============
 
 ...
 
