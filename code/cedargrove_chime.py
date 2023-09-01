@@ -8,22 +8,25 @@ A CircuitPython class for generating wind chime and bell sounds using synthio.
 
 Acknowledgement and thanks to:
 Lee Hite, 'Tubular Bell Chimes Design Handbook' for the analysis of tubular
-chime physics and overtones;
+chime physics and overtones.
 C. McKenzie, T. Schweisinger, and J. Wagner, 'A Mechanical Engineering
 Laboratory Experiment to Investigate the Frequency Analysis of Bells and Chimes
 with Assessment' for the analysis of bell overtones;
 Liz Clark, 'Circle of Fifths Euclidean Synth with synthio and CircuitPython'
-Adafruit Learning Guide for the waveform and noise methods;
-Todd Kurt for fundamentally essential synthio hints, tricks, and examples
+for the waveform and noise methods;
+Todd Kurt for fundamentally essential synth hints, tricks, and examples
 (https://github.com/todbot/circuitpython-synthio-tricks).
 
-Also, special thanks to Jeff Epler and Adafruit for the comprehensive design and
-implementation of the amazing CircuitPython synthio module.
+Also, special thanks to Jeff Epler for the comprehensive design and implementation
+of the amazing CircuitPython synthio module.
 
 * Author(s): JG for Cedar Grove Maker Studios
 
 Implementation Notes
 --------------------
+
+**Hardware:**
+* ESP-32-S2 Feather
 
 **Software and Dependencies:**
 * Adafruit CircuitPython firmware for the supported boards:
@@ -50,28 +53,26 @@ class Scale:
     """A collection of common wind chime musical note scales from
     Tubular Bell Chimes Design Handbook, Lee Hite."""
 
-    # fmt: off
-    Westminister  = ["G#5", "E5", "F#5", "B4"]
-    Pentatonic    = ["C5", "D5", "E5", "G5", "A5"]
-    CNine         = ["C5", "E5", "G5", "A#5", "D6"]
-    HavaNegila    = ["C5", "C#5", "E5", "F5", "G5", "G#5"]
-    CorinthianBellsA  = ["A4", "B4", "C#5", "E5", "F#5", "A5"]
-    CorinthianBellsB  = ["B4", "C#5", "D#5", "F5", "G#5", "A#5"]
-    CorinthianBellsC  = ["C4", "D4", "E4", "G4", "A4", "C5"]
+    Westminister = ["G#5", "E5", "F#5", "B4"]
+    Pentatonic = ["C5", "D5", "E5", "G5", "A5"]
+    CNine = ["C5", "E5", "G5", "A#5", "D6"]
+    HavaNegila = ["C5", "C#5", "E5", "F5", "G5", "G#5"]
+    CorinthianBellsA = ["A4", "B4", "C#5", "E5", "F#5", "A5"]
+    CorinthianBellsB = ["B4", "C#5", "D#5", "F5", "G#5", "A#5"]
+    CorinthianBellsC = ["C4", "D4", "E4", "G4", "A4", "C5"]
     CorinthianBellsEb = ["D#4", "F4", "G4", "A#4", "C5", "D#5"]
-    CorinthianBellsG  = ["G4", "A4", "B4", "D5", "E5", "G5"]
-    Whittington   = ["E5", "F#5", "G5", "A5", "B5", "C#6", "D6"]
-    Canterbury    = ["D5", "E5", "F#5", "G5", "A5", "B5"]
-    Trinity       = ["D5", "G5", "A5", "B5", "C6", "D6"]
-    Winchester    = ["C5", "D5", "E5", "F5", "G5", "A5"]
-    StMichaels    = ["F5", "G5", "A5", "A#5", "C6", "D6", "E6", "F6"]
-    HappyBirthday = ["C5", "D5", "E5", "F5", "G5", "A5", "A#5", "B5", "C6"]
+    CorinthianBellsG = ["G4", "A4", "B4", "D5", "E5", "G5"]
+    Whittington = ["E5", "F#5", "G5", "A5", "B5", "C#6", "D6"]
+    Canterbury = ["D5", "E5", "F#5", "G5", "A5", "B5"]
+    Trinity = ["D5", "G5", "A5", "B5", "C6", "D6"]
+    Winchester = ["C5", "D5", "E5", "F5", "G5", "A5"]
+    StMichaels = ["F5", "G5", "A5", "A#5", "C6", "D6", "E6", "F6"]
+    HappyBirthday = ["C6", "D6", "E6", "F6", "G6", "A6", "A#6", "B6", "C7"]
 
     # Other wind chimes measured in-field
-    HarryDavidPear = ["F#5", "G#5", "B5", "C6", "E6", "G6"]  # steel tubular
-    CeramicTurtles = []  # copper bell
-    BiPlane        = []  # copper tubular
-    # fmt: on
+    HarryDavidPear = ["F#5", "G#5", "B5", "C6", "E6", "G6"]  # material = steel, voice = tubular
+    CeramicTurtles = []  # material = ceramic, voice = bell
+    BiPlane = []  # material = copper, voice = tubular
 
 
 class Material:
@@ -104,12 +105,7 @@ class Overtones:
     """Bell overtones were measured empirically but fall close to the
     theoretical single-capped tubular harmonics where overtones are the
     odd harmonics."""
-    Bell = [
-        (1.00, 0.8),
-        (1.48, 0.19),
-        (1.35, 0.01),
-        (1.72, 0.0),
-    ]
+    Bell = [(1.00, 0.8), (1.48, 0.19), (1.35, 0.01), (1.72, 0.0)]
 
     """Perfect overtones: the theoretical harmonics of a dual-capped tube."""
     Perfect = [
@@ -152,36 +148,36 @@ class Chime:
         """Create the chime oscillator waveform, note envelope, overtones,
         scale, and instantiate the synthesizer.
 
-        :param bus audio: An instantiated audio object to receive the output
+        param: audio, ?: An instantiated audio object to receive the output
         audio stream, typically an I2S connection, analog DAC output pin, or
         PWM output pin. No default.
-        :param list scale: The list of playable chime notes in Scientific
+        param: scale, list: The list of playable chime notes in Scientific
         Pitch Notation (SPN). Each element of the list is a single SPN string,
         such as “A#4” for the A# for Bb note in the fourth octave. The
         Chime.Scale class contains a number of chime scale lists. Defaults to
         Scale.CNine.
-        :param list material: A list of chime material note envelope
+        param: material, list: A list of chime material note envelope
         parameters for attack time, attack level, and release time. The
         Chime.Material class consists of presets for a variety of materials.
         Defaults to Material.SteelEMT.
-        :param list striker: A list of striker material note envelope
+        param: striker, list: A list of striker material note envelope
         parameter ratios for attack time and attack level. The ratios are used
         to adjust chime material note envelope properties for a particular
         striker material. The Chime.Striker class consists of presets for a
         variety of materials. Defaults to Striker.Metal.
-        :param str voice: A string representing the pre-defined synth
+        param: voice, string: A string representing the pre-defined synth
         voices. The Chime.Voice class contains presets for Voice.Bell (“bell”,
         a single-capped tube with empirical overtones), Voice.Perfect
         (“perfect”, a dual-capped tube with algorithmically generated overtones
         equal to the length-related harmonics), and Voice.Tubular (“tubular”,
         a traditional open-ended tube chime with empirical non-harmonic
         overtones). Defaults to Voice.Tubular.
-        :param int scale_offset: A positive or negative integer value of note
+        param: scale_offset, int: A positive or negative integer value of note
         pitch half-steps to offset the pitch of the scale. Defaults to 0 (no
         scale pitch offset).
-        :param float loudness: A normalized floating point value for output
+        param: loudness, float: A normalized floating point value for output
         amplitude, ranging from 0.0 to 1.0. Defaults to 0.5 (one-half volume).
-        :param bool debug: A boolean value to enable debug print messages.
+        param: debug, bool: A boolean value to enable debug print messages.
         Defaults to False (no debug print messages).
         """
 
