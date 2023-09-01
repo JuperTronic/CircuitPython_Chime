@@ -145,36 +145,36 @@ class Chime:
         """Create the chime oscillator waveform, note envelope, overtones,
         scale, and instantiate the synthesizer.
 
-        param: audio, ?: An instantiated audio object to receive the output
+        :param bus audio: An instantiated audio object to receive the output
         audio stream, typically an I2S connection, analog DAC output pin, or
         PWM output pin. No default.
-        param: scale, list: The list of playable chime notes in Scientific
+        :param list scale: The list of playable chime notes in Scientific
         Pitch Notation (SPN). Each element of the list is a single SPN string,
         such as “A#4” for the A# for Bb note in the fourth octave. The
         Chime.Scale class contains a number of chime scale lists. Defaults to
         Scale.CNine.
-        param: material, list: A list of chime material note envelope
+        :param list material: A list of chime material note envelope
         parameters for attack time, attack level, and release time. The
         Chime.Material class consists of presets for a variety of materials.
         Defaults to Material.SteelEMT.
-        param: striker, list: A list of striker material note envelope
+        :param list striker: A list of striker material note envelope
         parameter ratios for attack time and attack level. The ratios are used
         to adjust chime material note envelope properties for a particular
         striker material. The Chime.Striker class consists of presets for a
         variety of materials. Defaults to Striker.Metal.
-        param: voice, string: A string representing the pre-defined synth
+        :param str voice: A string representing the pre-defined synth
         voices. The Chime.Voice class contains presets for Voice.Bell (“bell”,
         a single-capped tube with empirical overtones), Voice.Perfect
         (“perfect”, a dual-capped tube with algorithmically generated overtones
         equal to the length-related harmonics), and Voice.Tubular (“tubular”,
         a traditional open-ended tube chime with empirical non-harmonic
         overtones). Defaults to Voice.Tubular.
-        param: scale_offset, int: A positive or negative integer value of note
+        :param int scale_offset: A positive or negative integer value of note
         pitch half-steps to offset the pitch of the scale. Defaults to 0 (no
         scale pitch offset).
-        param: loudness, float: A normalized floating point value for output
+        :param float loudness: A normalized floating point value for output
         amplitude, ranging from 0.0 to 1.0. Defaults to 0.5 (one-half volume).
-        param: debug, bool: A boolean value to enable debug print messages.
+        :param bool debug: A boolean value to enable debug print messages.
         Defaults to False (no debug print messages).
         """
 
