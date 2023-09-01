@@ -50,33 +50,28 @@ class Scale:
     """A collection of common wind chime musical note scales from
     Tubular Bell Chimes Design Handbook, Lee Hite."""
 
-    Westminister = ["G#5", "E5", "F#5", "B4"]
-    Pentatonic = ["C5", "D5", "E5", "G5", "A5"]
-    CNine = ["C5", "E5", "G5", "A#5", "D6"]
-    HavaNegila = ["C5", "C#5", "E5", "F5", "G5", "G#5"]
-    CorinthianBellsA = ["A4", "B4", "C#5", "E5", "F#5", "A5"]
-    CorinthianBellsB = ["B4", "C#5", "D#5", "F5", "G#5", "A#5"]
-    CorinthianBellsC = ["C4", "D4", "E4", "G4", "A4", "C5"]
+    # fmt: off
+    Westminister  = ["G#5", "E5", "F#5", "B4"]
+    Pentatonic    = ["C5", "D5", "E5", "G5", "A5"]
+    CNine         = ["C5", "E5", "G5", "A#5", "D6"]
+    HavaNegila    = ["C5", "C#5", "E5", "F5", "G5", "G#5"]
+    CorinthianBellsA  = ["A4", "B4", "C#5", "E5", "F#5", "A5"]
+    CorinthianBellsB  = ["B4", "C#5", "D#5", "F5", "G#5", "A#5"]
+    CorinthianBellsC  = ["C4", "D4", "E4", "G4", "A4", "C5"]
     CorinthianBellsEb = ["D#4", "F4", "G4", "A#4", "C5", "D#5"]
-    CorinthianBellsG = ["G4", "A4", "B4", "D5", "E5", "G5"]
-    Whittington = ["E5", "F#5", "G5", "A5", "B5", "C#6", "D6"]
-    Canterbury = ["D5", "E5", "F#5", "G5", "A5", "B5"]
-    Trinity = ["D5", "G5", "A5", "B5", "C6", "D6"]
-    Winchester = ["C5", "D5", "E5", "F5", "G5", "A5"]
-    StMichaels = ["F5", "G5", "A5", "A#5", "C6", "D6", "E6", "F6"]
+    CorinthianBellsG  = ["G4", "A4", "B4", "D5", "E5", "G5"]
+    Whittington   = ["E5", "F#5", "G5", "A5", "B5", "C#6", "D6"]
+    Canterbury    = ["D5", "E5", "F#5", "G5", "A5", "B5"]
+    Trinity       = ["D5", "G5", "A5", "B5", "C6", "D6"]
+    Winchester    = ["C5", "D5", "E5", "F5", "G5", "A5"]
+    StMichaels    = ["F5", "G5", "A5", "A#5", "C6", "D6", "E6", "F6"]
     HappyBirthday = ["C5", "D5", "E5", "F5", "G5", "A5", "A#5", "B5", "C6"]
 
     # Other wind chimes measured in-field
-    HarryDavidPear = [
-        "F#5",
-        "G#5",
-        "B5",
-        "C6",
-        "E6",
-        "G6",
-    ]  # material = steel, voice = tubular
-    CeramicTurtles = []  # material = ceramic, voice = bell
-    BiPlane = []  # material = copper, voice = tubular
+    HarryDavidPear = ["F#5", "G#5", "B5", "C6", "E6", "G6"]  # steel tubular
+    CeramicTurtles = []  # copper bell
+    BiPlane        = []  # copper tubular
+    # fmt: on
 
 
 class Material:
