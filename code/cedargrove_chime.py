@@ -67,7 +67,14 @@ class Scale:
     HappyBirthday = ["C5", "D5", "E5", "F5", "G5", "A5", "A#5", "B5", "C6"]
 
     # Other wind chimes measured in-field
-    HarryDavidPear = ["F#5", "G#5", "B5", "C6", "E6", "G6"]  # material = steel, voice = tubular
+    HarryDavidPear = [
+        "F#5",
+        "G#5",
+        "B5",
+        "C6",
+        "E6",
+        "G6",
+    ]  # material = steel, voice = tubular
     CeramicTurtles = []  # material = ceramic, voice = bell
     BiPlane = []  # material = copper, voice = tubular
 
