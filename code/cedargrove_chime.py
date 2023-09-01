@@ -104,7 +104,12 @@ class Overtones:
     """Bell overtones were measured empirically but fall close to the
     theoretical single-capped tubular harmonics where overtones are the
     odd harmonics."""
-    Bell = [(1.00, 0.8), (1.48, 0.19), (1.35, 0.01), (1.72, 0.0)]
+    Bell = [
+        (1.00, 0.8),
+        (1.48, 0.19),
+        (1.35, 0.01),
+        (1.72, 0.0),
+    ]
 
     """Perfect overtones: the theoretical harmonics of a dual-capped tube."""
     Perfect = [
