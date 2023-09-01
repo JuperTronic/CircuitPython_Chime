@@ -8,25 +8,22 @@ A CircuitPython class for generating wind chime and bell sounds using synthio.
 
 Acknowledgement and thanks to:
 Lee Hite, 'Tubular Bell Chimes Design Handbook' for the analysis of tubular
-chime physics and overtones.
+chime physics and overtones;
 C. McKenzie, T. Schweisinger, and J. Wagner, 'A Mechanical Engineering
 Laboratory Experiment to Investigate the Frequency Analysis of Bells and Chimes
 with Assessment' for the analysis of bell overtones;
 Liz Clark, 'Circle of Fifths Euclidean Synth with synthio and CircuitPython'
-for the waveform and noise methods;
-Todd Kurt for fundamentally essential synth hints, tricks, and examples
+Adafruit Learning Guide for the waveform and noise methods;
+Todd Kurt for fundamentally essential synthio hints, tricks, and examples
 (https://github.com/todbot/circuitpython-synthio-tricks).
 
-Also, special thanks to Jeff Epler for the comprehensive design and implementation
-of the amazing CircuitPython synthio module.
+Also, special thanks to Jeff Epler and Adafruit for the comprehensive design and
+implementation of the amazing CircuitPython synthio module.
 
 * Author(s): JG for Cedar Grove Maker Studios
 
 Implementation Notes
 --------------------
-
-**Hardware:**
-* ESP-32-S2 Feather
 
 **Software and Dependencies:**
 * Adafruit CircuitPython firmware for the supported boards:
