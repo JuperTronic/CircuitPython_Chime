@@ -4,7 +4,7 @@
 """
 `chime_wind_algorithm`
 ===============================================================================
-A test of a windchime wind speed algorithm.
+A test of a wind chime wind speed algorithm.
 
 * Author(s): JG for Cedar Grove Maker Studios
 
@@ -53,20 +53,20 @@ while True:
     the chime tubes are mounted in a circle and that no more than half the
     tubes could sound when the striker moves due to wind.
     The initial chime tube note (chime_index[0]) is selected randomly from
-    chime.scale. The inital struck note will be followed by up adjacent notes
+    chime.scale. The initial struck note will be followed by up adjacent notes
     either to the right or left as determined by the random direction variable.
-    The playable note indicies are contained in the chime_index list.
+    The playable note indices are contained in the chime_index list.
     Note amplitude and the delay between note sequences is proportional to
     the wind speed."""
 
-    """Populate the chime_index list with the inital note then add the
+    """Populate the chime_index list with the initial note then add the
     additional notes."""
     chime_index = []
     chime_index.append(random.randrange(len(chime.scale)))
 
     direction = random.choice((-1, 1))
     for count in range(1, len(chime.scale) // 2):
-        chime_index.append((chime_index[count-1] + direction) % len(chime.scale))
+        chime_index.append((chime_index[count - 1] + direction) % len(chime.scale))
 
     """Randomly select the number of notes to play in the sequence based on the
     length of the chime_index list."""
@@ -76,8 +76,8 @@ while True:
     note_amplitude = map_range(WIND_SPEED, 0, 50, 0.4, 1.0)
     for count in range(notes_to_play):
         chime.strike(chime.scale[chime_index[count]], note_amplitude)
-        time.sleep(random.randrange(10, 60) * 0.01)  # random delay of 0.10 to 0.50 seconds
+        time.sleep(random.randrange(10, 60) * 0.01)  # 0.10 to 0.50 seconds
 
     """Delay the next note sequence inversely based on wind speed plus a
     random interval."""
-    time.sleep(map_range(WIND_SPEED, 0, 50, 2.0, 0.01) + (random.random()/2))
+    time.sleep(map_range(WIND_SPEED, 0, 50, 2.0, 0.01) + (random.random() / 2))
