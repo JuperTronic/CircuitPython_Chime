@@ -88,8 +88,10 @@ API documentation for this library can be found in `Cedargrove_Chime_API <https:
 
 Planned Updates
 ---------------
+* Provide additional chime scales.
+* Update the Overtones class to include aluminum, wood, and brass.
+* Add link to the '`Windless IoT Garden Chime`' project.
 
-...
 
 Acknowledgements and Thanks
 ---------------------------
