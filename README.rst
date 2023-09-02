@@ -19,7 +19,7 @@ The CedarGrove CircuitPython Chime class provides `synthio` note overtones and e
 a combination of tubular chime algorithms and empirical models. Three chime voices are included
 in the class (``Voice.Tubular``, ``Voice.Bell``, and ``Voice.Perfect``) as well as selectable chime
 and striker materials. The ``Scales`` class contains a library of common wind chime and bell scales
-in a series of Scientific Pitch Notation (SPN) lists.
+in a collection of Scientific Pitch Notation (SPN) lists.
 
 The ``Chime`` class is instantiated after an MCU board-specific audio output object is defined. The
 audio output object can be an Analog DAC or PWM GPIO pin as well as an I2S DAC output (as in the
